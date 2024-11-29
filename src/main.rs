@@ -56,7 +56,7 @@ fn tokenize(file_contents: String){
         for c in line.chars(){
             match c{
                 // invalid tokens ---
-                '$'|'#'|'@'|'!'|'%'|'^'|'&'|'|'|'\\'|':'|'?'|'/'|'_' => eprintln!("[line {lno}] Error: Unexpected character: {c}"),
+                '$'|'#'|'@'|'!'|'%'|'^'|'&'|'|'|'\\'|':'|'?'|'/'|'_' => {eprintln!("[line {lno}] Error: Unexpected character: {c}");std::process::exit(65)},
                 _ => {}
             }
         }
