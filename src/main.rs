@@ -2,6 +2,20 @@ use std::env;
 use std::fs;
 use std::io::{self, Write};
 
+/*
+enum Lexemes{
+    LeftParen,
+    RightParen,
+    LeftBrace,
+    RightBrace,
+    Star,
+    Dot,
+    Comma,
+    Plus,
+    EOF
+}
+*/
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
@@ -43,6 +57,10 @@ fn tokenize(file_contents: String){
 			')' => println!("RIGHT_PAREN ) null"),
 			'{' => println!("LEFT_BRACE {{ null"),
 			'}' => println!("RIGHT_BRACE }} null"),
+			'.' => println!("DOT . null"),
+			',' => println!("COMMA , null"),
+			'*' => println!("STAR * null"),
+			'+' => println!("PLUS + null"),
             _ => {}
         }
     }
