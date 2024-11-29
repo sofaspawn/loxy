@@ -38,10 +38,12 @@ fn main() {
 
 fn tokenize(file_contents: String){
     for c in file_contents.chars(){
-        if c=='('{
-            println!("LEFT_PAREN ( null");
-        } else if c==')'{
-            println!("RIGHT_PAREN ) null");
+        match c{
+			'(' => println!("LEFT_PAREN ( null"),
+			')' => println!("RIGHT_PAREN ) null"),
+			'{' => println!("LEFT_BRACE {{ null"),
+			'}' => println!("RIGHT_BRACE }} null"),
+            _ => {}
         }
     }
     println!("EOF  null");
