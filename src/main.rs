@@ -61,6 +61,8 @@ fn tokenize(file_contents: String){
 			',' => println!("COMMA , null"),
 			'*' => println!("STAR * null"),
 			'+' => println!("PLUS + null"),
+			'-' => println!("MINUS - null"),
+			';' => println!("SEMICOLON ; null"),
             _ => {}
         }
     }
