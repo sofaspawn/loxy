@@ -56,27 +56,20 @@ fn tokenize(file_contents: String){
     for line in file_contents.split('\n'){
         for c in line.chars(){
             match c{
-                // invalid tokens ---
-                '$'|'#'|'@'|'!'|'%'|'^'|'&'|'|'|'\\'|':'|'?'|'/'|'_' => {eprintln!("[line {lno}] Error: Unexpected character: {c}");error=true;},
-                _ => {}
+                '(' => println!("LEFT_PAREN {c} null"),
+                ')' => println!("RIGHT_PAREN {c} null"),
+                '{' => println!("LEFT_BRACE {c} null"),
+                '}' => println!("RIGHT_BRACE {c} null"),
+                '.' => println!("DOT {c} null"),
+                ',' => println!("COMMA {c} null"),
+                '*' => println!("STAR {c} null"),
+                '+' => println!("PLUS {c} null"),
+                '-' => println!("MINUS {c} null"),
+                ';' => println!("SEMICOLON {c} null"),
+                _ => {eprintln!("[line {lno}] Error: Unexpected character: {c}");error=true;}
             }
         }
         lno+=1;
-    }
-    for c in file_contents.chars(){
-        match c{
-            '(' => println!("LEFT_PAREN {c} null"),
-            ')' => println!("RIGHT_PAREN {c} null"),
-            '{' => println!("LEFT_BRACE {c} null"),
-            '}' => println!("RIGHT_BRACE {c} null"),
-            '.' => println!("DOT {c} null"),
-            ',' => println!("COMMA {c} null"),
-            '*' => println!("STAR {c} null"),
-            '+' => println!("PLUS {c} null"),
-            '-' => println!("MINUS {c} null"),
-            ';' => println!("SEMICOLON {c} null"),
-            _ => {}
-        }
     }
     println!("EOF  null");
     if error{
