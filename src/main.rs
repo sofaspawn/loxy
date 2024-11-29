@@ -24,7 +24,7 @@ fn main() {
 
             // Uncomment this block to pass the first stage
             if !file_contents.is_empty() {
-                panic!("Scanner not implemented");
+                tokenize(file_contents);
             } else {
                 println!("EOF  null"); // Placeholder, remove this line when implementing the scanner
             }
@@ -34,4 +34,15 @@ fn main() {
             return;
         }
     }
+}
+
+fn tokenize(file_contents: String){
+    for c in file_contents.chars(){
+        if c=='('{
+            println!("LEFT_PAREN ( null");
+        } else if c==')'{
+            println!("RIGHT_PAREN ) null");
+        }
+    }
+    println!("EOF  null");
 }
