@@ -51,18 +51,29 @@ fn main() {
 }
 
 fn tokenize(file_contents: String){
+    let mut lno = 1;
+    for line in file_contents.split('\n'){
+        for c in line.chars(){
+            match c{
+                // invalid tokens ---
+                '$'|'#' => eprintln!("[line {lno}] Error: Unexpected character: {c}"),
+                _ => {}
+            }
+        }
+        lno+=1;
+    }
     for c in file_contents.chars(){
         match c{
-			'(' => println!("LEFT_PAREN ( null"),
-			')' => println!("RIGHT_PAREN ) null"),
-			'{' => println!("LEFT_BRACE {{ null"),
-			'}' => println!("RIGHT_BRACE }} null"),
-			'.' => println!("DOT . null"),
-			',' => println!("COMMA , null"),
-			'*' => println!("STAR * null"),
-			'+' => println!("PLUS + null"),
-			'-' => println!("MINUS - null"),
-			';' => println!("SEMICOLON ; null"),
+            '(' => println!("LEFT_PAREN {c} null"),
+            ')' => println!("RIGHT_PAREN {c} null"),
+            '{' => println!("LEFT_BRACE {c} null"),
+            '}' => println!("RIGHT_BRACE {c} null"),
+            '.' => println!("DOT {c} null"),
+            ',' => println!("COMMA {c} null"),
+            '*' => println!("STAR {c} null"),
+            '+' => println!("PLUS {c} null"),
+            '-' => println!("MINUS {c} null"),
+            ';' => println!("SEMICOLON {c} null"),
             _ => {}
         }
     }
