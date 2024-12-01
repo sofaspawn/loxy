@@ -138,9 +138,16 @@ fn tokenize(file_contents: String) {
                                 break;
                             }
                         }
+                        let num = match dig.parse::<f64>() {
+                            Ok(n) => n,
+                            Err(_) => {
+                                error = true;
+                                eprintln!("[line {lno}] Error: Invalid number: {dig}");
+                                0.0
+                            }
+                        };
+                        println!("NUMBER {dig} {num:?}");
                     }
-                    let num = dig.parse::<f64>().unwrap();
-                    println!("NUMBER {dig} {num:?}");
                 }
                 '\t' | ' ' | '\r' => {}
                 _ => {
