@@ -122,7 +122,7 @@ fn tokenize(file_contents: String) {
                     }
                     if unterminated {
                         error = true;
-                        eprintln!("[line {lno}] Error: Unterminated string");
+                        eprintln!("[line {lno}] Error: Unterminated string.");
                     } else {
                         println!("STRING \"{}\" {}", string, string);
                     }
