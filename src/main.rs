@@ -127,6 +127,21 @@ fn tokenize(file_contents: String) {
                         println!("STRING \"{}\" {}", string, string);
                     }
                 }
+                d => {
+                    let mut dig = String::new();
+                    if d.is_ascii_digit() {
+                        dig.push(d);
+                        while let Some(x) = chars.next() {
+                            if x.is_ascii_digit() || x == '.' {
+                                dig.push(x);
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                    let num = dig.parse::<f64>().unwrap();
+                    println!("NUMBER {dig} {num:?}");
+                }
                 '\t' | ' ' | '\r' => {}
                 _ => {
                     eprintln!("[line {lno}] Error: Unexpected character: {c}");
