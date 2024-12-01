@@ -110,17 +110,7 @@ fn tokenize(file_contents: String) {
                         println!("SLASH / null");
                     }
                 }
-                '\t' => {
-                    //chars.next();
-                }
-                ' ' => {
-                    /*
-                    if let Some(x) = chars.peek() {
-                        println!("{x}");
-                    }
-                    chars.next();
-                    */
-                }
+                '\t' | ' ' => {}
                 _ => {
                     eprintln!("[line {lno}] Error: Unexpected character: {c}");
                     error = true;
