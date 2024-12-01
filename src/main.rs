@@ -131,12 +131,13 @@ fn tokenize(file_contents: String) {
                     let mut dig = String::new();
                     if d.is_ascii_digit() {
                         dig.push(d);
-                        while let Some(x) = chars.next() {
-                            if x.is_ascii_digit() || x == '.' {
-                                dig.push(x);
+                        while let Some(x) = chars.peek() {
+                            if x.is_ascii_digit() || *x == '.' {
+                                dig.push(*x);
                             } else {
                                 break;
                             }
+                            chars.next();
                         }
                         let num = match dig.parse::<f64>() {
                             Ok(n) => n,
