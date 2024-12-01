@@ -72,7 +72,7 @@ fn tokenize(file_contents: String) {
                         chars.next();
                         println!("EQUAL_EQUAL == null");
                     } else {
-                        println!("EQUAL = null");
+                        println!("EQUAL {c} null");
                     }
                 }
                 '!' => {
@@ -80,7 +80,7 @@ fn tokenize(file_contents: String) {
                         chars.next();
                         println!("BANG_EQUAL != null");
                     } else {
-                        println!("BANG ! null");
+                        println!("BANG {c} null");
                     }
                 }
                 '<' => {
@@ -88,7 +88,7 @@ fn tokenize(file_contents: String) {
                         chars.next();
                         println!("LESS_EQUAL <= null");
                     } else {
-                        println!("LESS < null");
+                        println!("LESS {c} null");
                     }
                 }
                 '>' => {
@@ -96,7 +96,7 @@ fn tokenize(file_contents: String) {
                         chars.next();
                         println!("GREATER_EQUAL >= null");
                     } else {
-                        println!("GREATER > null");
+                        println!("GREATER {c} null");
                     }
                 }
                 '/' => {
@@ -107,8 +107,20 @@ fn tokenize(file_contents: String) {
                             }
                         }
                     } else {
-                        println!("SLASH / null");
+                        println!("SLASH {c} null");
                     }
+                }
+                '"' => {
+                    let mut string = String::new();
+                    while let Some(c) = chars.peek() {
+                        if *c == '"' {
+                            break;
+                        }
+                        string.push(*c);
+                        chars.next();
+                    }
+                    chars.next();
+                    println!("STRING \"{}\" {}", string, string);
                 }
                 '\t' | ' ' | '\r' => {}
                 _ => {
