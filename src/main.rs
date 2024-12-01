@@ -50,12 +50,13 @@ fn main() {
     }
 }
 
-fn tokenize(file_contents: String){
+fn tokenize(file_contents: String) {
     let mut error = false;
     let mut lno = 1;
-    for line in file_contents.split('\n'){
-        for c in line.chars(){
-            match c{
+    for line in file_contents.split('\n') {
+        let mut chars = line.chars().peekable();
+        while let Some(c) = chars.next() {
+            match c {
                 '(' => println!("LEFT_PAREN {c} null"),
                 ')' => println!("RIGHT_PAREN {c} null"),
                 '{' => println!("LEFT_BRACE {c} null"),
@@ -66,13 +67,24 @@ fn tokenize(file_contents: String){
                 '+' => println!("PLUS {c} null"),
                 '-' => println!("MINUS {c} null"),
                 ';' => println!("SEMICOLON {c} null"),
-                _ => {eprintln!("[line {lno}] Error: Unexpected character: {c}");error=true;}
+                '=' => {
+                    if let Some('=') = chars.peek() {
+                        chars.next();
+                        println!("EQUAL_EQUAL == null");
+                    } else {
+                        println!("EQUAL = null");
+                    }
+                }
+                _ => {
+                    eprintln!("[line {lno}] Error: Unexpected character: {c}");
+                    error = true;
+                }
             }
         }
-        lno+=1;
+        lno += 1;
     }
     println!("EOF  null");
-    if error{
+    if error {
         std::process::exit(65);
     }
 }
