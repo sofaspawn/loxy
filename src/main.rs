@@ -75,6 +75,14 @@ fn tokenize(file_contents: String) {
                         println!("EQUAL = null");
                     }
                 }
+                '!' => {
+                    if let Some('=') = chars.peek() {
+                        chars.next();
+                        println!("BANG_EQUAL != null");
+                    } else {
+                        println!("BANG ! null");
+                    }
+                }
                 _ => {
                     eprintln!("[line {lno}] Error: Unexpected character: {c}");
                     error = true;
