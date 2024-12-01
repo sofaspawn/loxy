@@ -112,15 +112,20 @@ fn tokenize(file_contents: String) {
                 }
                 '"' => {
                     let mut string = String::new();
-                    while let Some(c) = chars.peek() {
-                        if *c == '"' {
+                    let mut unterminated = true;
+                    while let Some(x) = chars.next() {
+                        if x == '"' {
+                            unterminated = false;
                             break;
                         }
-                        string.push(*c);
-                        chars.next();
+                        string.push(x);
                     }
-                    chars.next();
-                    println!("STRING \"{}\" {}", string, string);
+                    if unterminated {
+                        error = true;
+                        eprintln!("[line {lno}] Error: Unterminated string");
+                    } else {
+                        println!("STRING \"{}\" {}", string, string);
+                    }
                 }
                 '\t' | ' ' | '\r' => {}
                 _ => {
