@@ -148,6 +148,7 @@ fn tokenize(file_contents: String) {
                             }
                         };
                         println!("NUMBER {dig} {num:?}");
+                    } else {
                     }
                 }
                 '\t' | ' ' | '\r' => {}
