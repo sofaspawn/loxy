@@ -110,7 +110,7 @@ fn tokenize(file_contents: String) {
                         println!("SLASH / null");
                     }
                 }
-                '\t' | ' ' => {}
+                '\t' | ' ' | '\r' => {}
                 _ => {
                     eprintln!("[line {lno}] Error: Unexpected character: {c}");
                     error = true;
